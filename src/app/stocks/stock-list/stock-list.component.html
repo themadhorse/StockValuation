@@ -7,11 +7,11 @@
     <mat-action-list>
       <mat-divider></mat-divider>
       <button mat-list-item class="mat-primary" *ngFor="let stock of stocks" (click)="onClick(stock.scripName)">
-        <h4 matLine>{{ stock.scripName }}</h4>
-        <p matLine [style.fontSize]="'12px'">{{ stock.companyName }}</p>
+        <h4 matLine style="font-size: large; margin-bottom: 1%;">{{ stock.scripName }}</h4>
+        <p matLine style="font-size: small;">{{ stock.companyName }}</p>
         <span class="flexExpand"></span>
         <span><h4
-              matLine
+              matLine style="transform: translateY(40%);"
               [ngClass]="{'profit': stock.dailyProfit, 'loss': !stock.dailyProfit}">
               ₹{{ stock.cmp }}
               </h4>
