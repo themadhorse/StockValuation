@@ -1,0 +1,18 @@
+<mat-card>
+  <div class="row">
+    <div class="col-xs-12">
+      <mat-card-title-group class="title">
+        <span><mat-card-title>{{ selectedStock.scripName }}</mat-card-title></span>
+        <span class="flexExpand"></span>
+        <span [ngClass]="{'profit': selectedStock.dailyProfit, 'loss': !selectedStock.dailyProfit}"
+        >₹{{ selectedStock.cmp }}</span>
+      </mat-card-title-group>
+      <mat-card-subtitle>{{ selectedStock.companyName }}</mat-card-subtitle>
+    </div>
+  </div>
+</mat-card>
+<mat-card style="height: 100px; margin-right: 3%;">
+  <mat-card-title style="position: absolute; top: 40%; left: 33%;">
+      More coming soon.
+  </mat-card-title>
+</mat-card>
