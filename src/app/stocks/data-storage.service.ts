@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Stock } from './stock.model';
 import { environment } from 'src/environments/environment';
-import NseStocks from '../json/NSE_STOCK_LIST.json';
 import { Subject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
@@ -29,17 +28,12 @@ export class DataStorageService {
     },
   ];
 
-  private nseStocks: Stock[] = NseStocks;
   refreshList = new Subject<Stock[]>();
 
   constructor(private http: HttpClient) {}
 
   get stockList() {
     return this.userStocks.slice();
-  }
-
-  get nseStockList() {
-    return this.nseStocks.slice();
   }
 
   fetchStock = (scrip: string): Stock =>

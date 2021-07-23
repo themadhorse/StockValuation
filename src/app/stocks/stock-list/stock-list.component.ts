@@ -13,7 +13,6 @@ import { Stock } from '../stock.model';
 })
 export class StockListComponent implements OnInit {
   stocks: Stock[];
-  nseStocks: Stock[];
   autoComplete = new FormControl();
   filteredStocks: Observable<Stock[]>;
   stockListSub: Subscription;
@@ -21,8 +20,6 @@ export class StockListComponent implements OnInit {
   constructor(private router: Router, private dataStorageService: DataStorageService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.nseStocks = this.dataStorageService.nseStockList;
-
     this.stocks = this.dataStorageService.stockList;
     this.stockListSub = this.dataStorageService.refreshList.subscribe((updatedStocks: Stock[]) => this.stocks = updatedStocks);
 
@@ -51,11 +48,4 @@ export class StockListComponent implements OnInit {
     this.dataStorageService.addStock(stock);
     this.autoComplete.setValue("");
   }
-
-  private _filter(value: string):Stock[] {
-    const filterValue = this._normalizeValue(value);
-    return this.nseStocks.filter(nseStock => this._normalizeValue(nseStock.symbol).includes(filterValue));
-  }
-
-  private _normalizeValue = (value: string): string => (value).toLowerCase().replace(/\s/g, '');
 }
