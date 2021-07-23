@@ -17,7 +17,10 @@ export class StockInfoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.route.params.subscribe(
-      (params: Params) => {this.selectedStock = this.dataStorageService.fetchStock(params['scrip'])}
+      (params: Params) => {
+        this.selectedStock = this.dataStorageService.fetchStock(params['scrip']);
+        //this.dataStorageService.fetchStockData(params['scrip']);
+      }
     );
   }
 

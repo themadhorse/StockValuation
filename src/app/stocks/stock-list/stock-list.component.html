@@ -1,14 +1,20 @@
 <div class="row">
   <div class="col-xs-12">
-    <mat-form-field class="example-full-width" appearance="fill" color="accent" style="width: 100% !important">
-      <mat-label>Search</mat-label>
-      <input matInput placeholder="Eg infy, reliance">
-    </mat-form-field>
+    <form>
+      <mat-form-field class="example-full-width" appearance="fill" color="accent" style="width: 100% !important">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" placeholder="Eg infy, reliance" [matAutocomplete]="auto" [formControl]="autoComplete">
+      </mat-form-field>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let nseStock of filteredStocks | async"
+        [value]="nseStock.symbol | removeNS" (click)="onSearchClick(nseStock)">{{ nseStock.symbol | removeNS }}</mat-option>
+      </mat-autocomplete>
+    </form>
     <mat-action-list>
       <mat-divider></mat-divider>
-      <button mat-list-item class="mat-primary" *ngFor="let stock of stocks" (click)="onClick(stock.scripName)">
-        <h4 matLine style="font-size: large; margin-bottom: 1%;">{{ stock.scripName }}</h4>
-        <p matLine style="font-size: small;">{{ stock.companyName }}</p>
+      <button mat-list-item class="mat-primary" *ngFor="let stock of stocks" (click)="onListClick(stock.symbol)">
+        <h4 matLine style="font-size: large; margin-bottom: 1%;">{{ stock.symbol | removeNS}}</h4>
+        <p matLine style="font-size: small;">{{ stock.longname }}</p>
         <span class="flexExpand"></span>
         <span><h4
               matLine style="transform: translateY(40%);"
@@ -21,4 +27,3 @@
     </mat-action-list>
   </div>
 </div>
-
