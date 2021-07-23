@@ -78,7 +78,6 @@ export class DataStorageService {
 
   addStock(stock: Stock) {
     this.userStocks.push(stock);
-    console.log(stock);
     this.refreshList.next(this.userStocks.slice());
   }
 }
